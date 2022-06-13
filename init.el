@@ -390,9 +390,13 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
+  
+   ;; Fontify the whole line for headings (with a background color).
+   ;;(setq org-fontify-whole-heading-line t)
 
    dotspacemacs-themes '(doom-gruvbox-light
                          doom-solarized-light
+						 leuven
                          doom-sourcerer
                          kaolin-valley-dark
                          doom-solarized-dark
@@ -424,14 +428,20 @@ It should only modify the values of Spacemacs settings."
    ;; +------------+------------+
    ;; text utf-8 setting
 
+   ;;   (setq-default dotspacemacs-default-font '("Source Code Pro"
+   ;;                                          :size 13
+   ;;                                          :weight normal
+   ;;                                          :width normal
+   ;;                                          :powerline-scale 1.1))
+
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Fira Code"
-                               :size 12.0
-                               :weight normal
-                               :width normal)
-
+							   :size 12.0
+							   :weight normal
+							   :width normal
+							   )
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
 
@@ -1370,6 +1380,16 @@ before packages are loaded."
   ;; end of old-school bindings
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  (use-package emojify :ensure t
+			   :if window-system
+			   :config
+			   (setq emojify-display-style 'image)
+			   ;(setq emojify-emoji-styles  '(unicode))
+			   ;(setq emojify-emoji-set "emojione-v2.2.6")
+			   (global-emojify-mode 1)
+			   )
+
+  (setq powerline-default-separator 'bar)
   (setq user-full-name "Junghan Kim")
   (setq user-mail-address "gtgkjh@gmail.com")
   (setq default-input-method "korean-hangul")
