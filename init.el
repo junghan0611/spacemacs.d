@@ -177,6 +177,14 @@ This function should only modify configuration layer settings."
      ;; SPC S menu, SPC S s to check current word
      spell-checking
 
+	 (with-eval-after-load "ispell"
+						   (setq ispell-program-name "hunspell")
+						   ;; ispell-set-spellchecker-params has to be called
+						   ;; before ispell-hunspell-add-multi-dic will work
+						   (ispell-set-spellchecker-params)
+						   (ispell-hunspell-add-multi-dic "ko_KR,en_US")
+						   (setq ispell-dictionary "ko_KR,en_US"))
+
      ;; Use original flycheck fringe bitmaps
      (syntax-checking :variables
                       syntax-checking-use-original-bitmaps t)
@@ -403,6 +411,18 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
    dotspacemacs-colorize-cursor-according-to-state t
+
+   ;; +------------+------------+
+   ;; | 일이삼사오 | 일이삼사오 |
+   ;; +------------+------------+
+   ;; | ABCDEFGHIJ | ABCDEFGHIJ |
+   ;; +------------+------------+
+   ;; | 1234567890 | 1234567890 |
+   ;; +------------+------------+
+   ;; | 일이삼사오 | 일이삼사오 |
+   ;; | abcdefghij | abcdefghij |
+   ;; +------------+------------+
+   ;; text utf-8 setting
 
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
@@ -738,6 +758,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
+  (setq multi-term-program "/usr/bin/zsh")
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Keeping Helm history clean
@@ -1348,7 +1369,11 @@ before packages are loaded."
   ;;
   ;; end of old-school bindings
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-	(setq default-input-method "korean-hangul")
+
+  (setq user-full-name "Junghan Kim")
+  (setq user-mail-address "gtgkjh@gmail.com")
+  (setq default-input-method "korean-hangul")
+  (use-package pdf-tools :ensure t  :defer t)
 
   )   ;; End of dot-spacemacs/user-config
 
