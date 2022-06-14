@@ -152,7 +152,7 @@ This function should only modify configuration layer settings."
 
      ;; SPC ' runs shell in a popup buffer
      (shell :variables
-            shell-default-shell 'eshell
+            shell-default-shell 'multi-term
             shell-default-height 30
             shell-default-position 'bottom)
 
@@ -1217,7 +1217,7 @@ before packages are loaded."
   ;; Shell configuration
   ;;
   ;; Use zsh for default multi-term shell
-  ;; (setq multi-term-program "/usr/bin/zsh")
+  (setq multi-term-program "/usr/bin/zsh")
   ;;
   ;; End of Shell configuration
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
