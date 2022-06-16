@@ -131,7 +131,7 @@ This function should only modify configuration layer settings."
           org-enable-github-support t
           org-enable-bootstrap-support t
           org-enable-reveal-js-support t
-					org-enable-appear-support t
+          org-enable-appear-support t
           org-want-todo-bindings t
           org-enable-org-journal-support t
           org-journal-dir "~/projects/journal/"
@@ -178,13 +178,13 @@ This function should only modify configuration layer settings."
      ;; SPC S menu, SPC S s to check current word
      spell-checking
 
-	 (with-eval-after-load "ispell"
-						   (setq ispell-program-name "hunspell")
-						   ;; ispell-set-spellchecker-params has to be called
-						   ;; before ispell-hunspell-add-multi-dic will work
-						   (ispell-set-spellchecker-params)
-						   (ispell-hunspell-add-multi-dic "ko_KR,en_US")
-						   (setq ispell-dictionary "ko_KR,en_US"))
+     (with-eval-after-load "ispell"
+       (setq ispell-program-name "hunspell")
+       ;; ispell-set-spellchecker-params has to be called
+       ;; before ispell-hunspell-add-multi-dic will work
+       (ispell-set-spellchecker-params)
+       (ispell-hunspell-add-multi-dic "ko_KR,en_US")
+       (setq ispell-dictionary "ko_KR,en_US"))
 
      ;; Use original flycheck fringe bitmaps
      (syntax-checking :variables
@@ -355,9 +355,9 @@ It should only modify the values of Spacemacs settings."
    ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
    ;; number is the project limit and the second the limit on the recent files
    ;; within a project.
-   ;dotspacemacs-startup-lists '((projects . 3)
-   ;                            (todos . 5)
-   ;                            (bookmarks . 20))
+   ;; dotspacemacs-startup-lists '((projects . 3)
+   ;;                            (todos . 5)
+   ;;                            (bookmarks . 20))
    dotspacemacs-startup-lists nil
 
    ;; True if the home buffer should respond to resize events. (default t)
@@ -392,13 +392,13 @@ It should only modify the values of Spacemacs settings."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-  
+
    ;; Fontify the whole line for headings (with a background color).
    ;;(setq org-fontify-whole-heading-line t)
 
-   dotspacemacs-themes '(doom-gruvbox-light
+   dotspacemacs-themes '(leuven
+                         doom-gruvbox-light
                          doom-solarized-light
-												 leuven
                          doom-sourcerer
                          kaolin-valley-dark
                          doom-solarized-dark
@@ -440,10 +440,10 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("Fira Code"
-							   :size 12.0
-							   :weight normal
-							   :width normal
-							   )
+                               :size 12.0
+                               :weight normal
+                               :width normal
+                               )
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
 
@@ -599,10 +599,10 @@ It should only modify the values of Spacemacs settings."
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
    dotspacemacs-line-numbers '(:visual t
-                               :disabled-for-modes dired-mode
-                                                   doc-view-mode
-                                                   pdf-view-mode
-                               :size-limit-kb 1000)
+                                       :disabled-for-modes dired-mode
+                                       doc-view-mode
+                                       pdf-view-mode
+                                       :size-limit-kb 1000)
 
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
@@ -742,17 +742,17 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   ;; spacemacs - overriding default height of modeline
   ;; doom-gruvbox - subtle lsp symbol highlight
   (setq-default
-    theming-modifications
-      '((spacemacs-light
-          (mode-line :height 0.92)
-          (mode-line-inactive :height 0.92))
-        (doom-solarized-light
-         (mode-line :height 0.92)
-         (mode-line-inactive :height 0.92))
-        (doom-gruvbox-light
-         (lsp-face-highlight-read :background nil :weight bold)
-         (command-log-command :foreground "firebrick")
-         (command-log-key :foreground "dark magenta"))))
+   theming-modifications
+   '((spacemacs-light
+      (mode-line :height 0.92)
+      (mode-line-inactive :height 0.92))
+     (doom-solarized-light
+      (mode-line :height 0.92)
+      (mode-line-inactive :height 0.92))
+     (doom-gruvbox-light
+      (lsp-face-highlight-read :background nil :weight bold)
+      (command-log-command :foreground "firebrick")
+      (command-log-key :foreground "dark magenta"))))
 
   )  ;; End of dotspacemacs/user-int
 
@@ -787,19 +787,19 @@ before packages are loaded."
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Keycast - show Emacs commands in mode line
   (use-package keycast
-                :commands keycast-mode
-                :config
-                (define-minor-mode keycast-mode
-                  "Show current command and its key binding in the mode line."
-                  :global t
-                  (if keycast-mode
-                      (progn
-                        (add-hook 'pre-command-hook 'keycast-mode-line-update t)
-                        (add-to-list 'mode-line-misc-info '("" mode-line-keycast "    "))
-                        )
-                    (remove-hook 'pre-command-hook 'keycast-mode-line-update)
-                    (setq global-mode-string (remove '("" mode-line-keycast " ") mode-line-misc-info))))
-                )
+    :commands keycast-mode
+    :config
+    (define-minor-mode keycast-mode
+      "Show current command and its key binding in the mode line."
+      :global t
+      (if keycast-mode
+          (progn
+            (add-hook 'pre-command-hook 'keycast-mode-line-update t)
+            (add-to-list 'mode-line-misc-info '("" mode-line-keycast "    "))
+            )
+        (remove-hook 'pre-command-hook 'keycast-mode-line-update)
+        (setq global-mode-string (remove '("" mode-line-keycast " ") mode-line-misc-info))))
+    )
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -982,7 +982,7 @@ before packages are loaded."
   ;; Define a kanban style set of stages for todo tasks
   (with-eval-after-load 'org
     (setq org-todo-keywords
-         '((sequence "TODO" "DOING" "BLOCKED" "REVIEW" "|" "DONE" "ARCHIVED"))))
+          '((sequence "TODO" "DOING" "BLOCKED" "REVIEW" "|" "DONE" "ARCHIVED"))))
   ;;
   ;; The default keywords all use the same colour.
   ;; Make the states easier to distinguish by using different colours
@@ -1033,7 +1033,8 @@ before packages are loaded."
   ;; (add-hook 'markdown-mode-hook 'turn-on-orgtbl)
   ;;
   ;; Turn on visual-line-mode for Org-mode only
-  ;; (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+  (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+
   ;;
   ;; use org-re-reveal instead of org-reveal (which hasnt been updated in ages and breaks org-mode 9.2)
   ;; (use-package org-re-reveal :after org)
@@ -1381,45 +1382,61 @@ before packages are loaded."
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
   (use-package emojify :ensure t
-			   :if window-system
-			   :config
-			   (setq emojify-display-style 'image)
-			   ;(setq emojify-emoji-styles  '(unicode))
-			   ;(setq emojify-emoji-set "emojione-v2.2.6")
-			   (global-emojify-mode 1)
-			   )
+    :if window-system
+    :config
+    (setq emojify-display-style 'image)
+    ;; (setq emojify-emoji-styles  '(unicode))
+    ;; (setq emojify-emoji-set "emojione-v2.2.6")
+    (global-emojify-mode 1)
+    )
 
-	;; for beginer 
-	(setq inhibit-startup-message t)
-	(scroll-bar-mode 1)
-	(tool-bar-mode 1)
-	(tooltip-mode 1)
-	(menu-bar-mode 1)
-	(setq visible-bell t)
+  ;; for beginer
+  (setq inhibit-startup-message t)
+  (scroll-bar-mode 1)
+  (tool-bar-mode 1)
+  (tooltip-mode 1)
+  (menu-bar-mode 1)
+  (setq visible-bell t)
 
-	;; for org-mode
-	(visual-line-mode 1)
+  ;; for org-mode
+  ;; (visual-line-mode 1) ;; not-working
 
-	;; off recentf mode
-	(recentf-mode -1)
+  ;; off recentf mode
+  (recentf-mode -1)
 
-	;; Revert Dired and other buffers
-	(setq global-auto-revert-non-file-buffers t)
+  ;; Revert Dired and other buffers
+  (setq global-auto-revert-non-file-buffers t)
 
-	;; Revert buffers when the underlying file has changed
-	(global-auto-revert-mode 1)
+  ;; Revert buffers when the underlying file has changed
+  (global-auto-revert-mode 1)
 
-	;; kepp .emacs.d clean
-	;; Use no-littering to automatically set common paths to the new user-emacs-directory
-  ;;(require 'no-littering)
+  ;; kepp .emacs.d clean
+  ;; Use no-littering to automatically set common paths to the new user-emacs-directory
+  ;; (require 'no-littering)
 
-	;; (setq powerline-default-separator 'bar)
-	(setq user-full-name "Junghan Kim")
-	(setq user-mail-address "gtgkjh@gmail.com")
-	(setq default-input-method "korean-hangul")
-	(use-package pdf-tools :ensure t  :defer t)
+  ;; wl-clipboard.el
+  (setq wl-copy-process nil)
+  (defun wl-copy (text)
+    (setq wl-copy-process (make-process :name "wl-copy"
+                                        :buffer nil
+                                        :command '("wl-copy" "-f" "-n")
+                                        :connection-type 'pipe))
+    (process-send-string wl-copy-process text)
+    (process-send-eof wl-copy-process))
+  (defun wl-paste ()
+    (if (and wl-copy-process (process-live-p wl-copy-process))
+        nil ;; should return nil if we're the current paste owner
+      (shell-command-to-string "wl-paste -n | tr -d \r")))
+  (setq interprogram-cut-function 'wl-copy)
+  (setq interprogram-paste-function 'wl-paste)
 
-	)   ;; End of dot-spacemacs/user-config
+  ;; (setq powerline-default-separator 'bar)
+  (setq user-full-name "Junghan Kim")
+  (setq user-mail-address "gtgkjh@gmail.com")
+  (setq default-input-method "korean-hangul")
+  (use-package pdf-tools :ensure t  :defer t)
+
+  )   ;; End of dot-spacemacs/user-config
 
 
 ;; Do not write anything past this comment. This is where Emacs will
