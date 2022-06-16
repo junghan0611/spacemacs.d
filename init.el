@@ -1407,7 +1407,7 @@ before packages are loaded."
 
 	;; kepp .emacs.d clean
 	;; Use no-littering to automatically set common paths to the new user-emacs-directory
-  (require 'no-littering)
+  ;;(require 'no-littering)
 
 	;; (setq powerline-default-separator 'bar)
 	(setq user-full-name "Junghan Kim")
