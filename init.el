@@ -1403,7 +1403,11 @@ before packages are loaded."
 	;; off recentf mode
 	(recentf-mode -1)
 
-  (setq-default display-line-numbers-width nil)
+	;; Revert Dired and other buffers
+	(setq global-auto-revert-non-file-buffers t)
+
+	;; Revert buffers when the underlying file has changed
+	(global-auto-revert-mode 1)
 
 	;; kepp .emacs.d clean
 	;; Use no-littering to automatically set common paths to the new user-emacs-directory
