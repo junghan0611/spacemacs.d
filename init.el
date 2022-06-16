@@ -131,6 +131,7 @@ This function should only modify configuration layer settings."
           org-enable-github-support t
           org-enable-bootstrap-support t
           org-enable-reveal-js-support t
+					org-enable-appear-support t
           org-want-todo-bindings t
           org-enable-org-journal-support t
           org-journal-dir "~/projects/journal/"
@@ -354,9 +355,10 @@ It should only modify the values of Spacemacs settings."
    ;; pair of numbers, e.g. `(recents-by-project . (7 .  5))', where the first
    ;; number is the project limit and the second the limit on the recent files
    ;; within a project.
-   dotspacemacs-startup-lists '((projects . 3)
-                                (todos . 5)
-                                (bookmarks . 20))
+   ;dotspacemacs-startup-lists '((projects . 3)
+   ;                            (todos . 5)
+   ;                            (bookmarks . 20))
+   dotspacemacs-startup-lists nil
 
    ;; True if the home buffer should respond to resize events. (default t)
    dotspacemacs-startup-buffer-responsive t
@@ -396,7 +398,7 @@ It should only modify the values of Spacemacs settings."
 
    dotspacemacs-themes '(doom-gruvbox-light
                          doom-solarized-light
-						 leuven
+												 leuven
                          doom-sourcerer
                          kaolin-valley-dark
                          doom-solarized-dark
@@ -541,7 +543,7 @@ It should only modify the values of Spacemacs settings."
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
    ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup t
+   dotspacemacs-maximized-at-startup nil
 
    ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
    ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
@@ -767,8 +769,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
-  (setq multi-term-program "/usr/bin/zsh")
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Keeping Helm history clean
@@ -1389,13 +1389,44 @@ before packages are loaded."
 			   (global-emojify-mode 1)
 			   )
 
-  (setq powerline-default-separator 'bar)
-  (setq user-full-name "Junghan Kim")
-  (setq user-mail-address "gtgkjh@gmail.com")
-  (setq default-input-method "korean-hangul")
-  (use-package pdf-tools :ensure t  :defer t)
+	;; for beginer 
+	(setq inhibit-startup-message t)
+	(scroll-bar-mode 1)
+	(tool-bar-mode 1)
+	(tooltip-mode 1)
+	(menu-bar-mode 1)
+	(setq visible-bell t)
 
-  )   ;; End of dot-spacemacs/user-config
+	;; for org-mode
+	(visual-line-mode 1)
+
+	;; off recentf mode
+	(recentf-mode 0)
+
+  (setq-default display-line-numbers-width nil)
+
+	;; kepp .emacs.d clean
+		;; Change the user-emacs-directory to keep unwanted things out of ~/.emacs.d
+	(setq user-emacs-directory (expand-file-name "~/.cache/emacs/")
+				url-history-file (expand-file-name "url/history" user-emacs-directory))
+
+		;; Use no-littering to automatically set common paths to the new user-emacs-directory
+  (require 'no-littering)
+
+		;; Keep customization settings in a temporary file (thanks Ambrevar!)
+	(setq custom-file
+				(if (boundp 'server-socket-dir)
+					(expand-file-name "custom.el" server-socket-dir)
+					(expand-file-name (format "emacs-custom-%s.el" (user-uid)) temporary-file-directory)))
+	(load custom-file t)
+
+	;; (setq powerline-default-separator 'bar)
+	(setq user-full-name "Junghan Kim")
+	(setq user-mail-address "gtgkjh@gmail.com")
+	(setq default-input-method "korean-hangul")
+	(use-package pdf-tools :ensure t  :defer t)
+
+	)   ;; End of dot-spacemacs/user-config
 
 
 ;; Do not write anything past this comment. This is where Emacs will
